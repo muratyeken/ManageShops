@@ -1,7 +1,15 @@
+using MenageShops.Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<MenageShopsDbContext>(_ =>
+{
+    _.UseSqlServer(builder.Configuration.GetConnectionString("MvcConnStr"));
+});
 
 var app = builder.Build();
 

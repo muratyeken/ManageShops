@@ -13,5 +13,13 @@ namespace ManageShops.Domain.Entities
         public DateTime? DeleteDate { get; set; }
         public DateTime? UpdateDate { get; set; }
         public Status Status { get; set; }
+        public Guid ID { get; set; }
+        public string CategoryName { get; set; }
+        public List<Product> Products { get; set; }
+
+        public Category()
+        {
+            Products = new List<Product>();
+        }
     }
 }

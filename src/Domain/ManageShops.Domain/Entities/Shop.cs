@@ -13,5 +13,13 @@ namespace ManageShops.Domain.Entities
         DateTime? IBaseEntity.DeleteDate { get; set; }
         DateTime? IBaseEntity.UpdateDate { get; set; }
         Status IBaseEntity.Status { get; set; }
+        public Guid ID { get; set; }
+        public string Name { get; set; }
+        public List<Employee> Employees { get; set; }
+
+        public Shop()
+        {
+            Employees = new List<Employee>();
+        }
     }
 }
