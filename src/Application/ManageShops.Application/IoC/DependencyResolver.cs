@@ -1,6 +1,9 @@
 ﻿using Autofac;
 using AutoMapper;
 using ManageShops.Application.AutoMapper;
+using ManageShops.Application.Services;
+using ManageShops.Domain.ReposOfDomain;
+using MenageShops.Infrastructure.ReposOfInfrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +16,11 @@ namespace ManageShops.Application.IoC
     {
         protected override void Load(ContainerBuilder builder)
         {
+
+            builder.RegisterType<EmployeeRepo>().As<IEmployeeRepo>().InstancePerLifetimeScope();
+            builder.RegisterType<AdminService>().As<IAdminService>().InstancePerLifetimeScope();
+            builder.RegisterType<ManagerService>().As<IManagerService>().InstancePerLifetimeScope();
+            builder.RegisterType<SigninService>().As<ISigninService>().InstancePerLifetimeScope();
             builder.Register(context => new MapperConfiguration(cfg =>
             {
                 
@@ -29,10 +37,6 @@ namespace ManageShops.Application.IoC
             })
             .As<IMapper>()
             .InstancePerLifetimeScope();
-
-
-
-
 
             base.Load(builder);
         }

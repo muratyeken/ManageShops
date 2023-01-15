@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ManageShops.Application.Models.DTOs;
+using ManageShops.Application.Models.VMs;
 using ManageShops.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,14 @@ namespace ManageShops.Application.AutoMapper
     {
         public Mapping()
         {
-            CreateMap<Employee, AddManagerDTO>().ReverseMap();
+            CreateMap<Employee,AddManagerDTO>().ReverseMap();
+            CreateMap<Employee,ManagersListVM>().ReverseMap();
+            CreateMap<UpdateManagerVM,UpdateMenagerDTO>().ReverseMap();
+            CreateMap<UpdateMenagerDTO,Employee>().ReverseMap();
+            CreateMap<Employee,AddOtherEmployeeDTO>().ReverseMap();
+            CreateMap<Employee,EmployeesListVM>().ReverseMap();
+            CreateMap<UpdateMenagerDTO,Employee>().ReverseMap();
+            CreateMap<UpdateOtherEmployeeDTO,Employee>().ReverseMap();
         }
     }
 }

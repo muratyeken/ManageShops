@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MenageShops.Infrastructure.Migrations
 {
     [DbContext(typeof(MenageShopsDbContext))]
-    [Migration("20230114192525_first_mig")]
-    partial class first_mig
+    [Migration("20230115163642_FirstMig")]
+    partial class FirstMig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

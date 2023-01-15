@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ManageShops.Application.Models.VMs
 {
-    public class ManagersListVM
+    public class EmployeesListVM
     {
         public Guid ID { get; set; }
         public string Name { get; set; }

@@ -58,7 +58,7 @@ namespace ManageShops.Application.Services
             var managers = await _employeeRepo.GetFilteredList(
                 select: x => new ManagersListVM
                 {
-                    Id = x.ID,
+                    ID = x.ID,
                     Name = x.Name,
                     Surname = x.Surname,
                     Roles = x.Roles,

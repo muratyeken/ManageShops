@@ -10,29 +10,28 @@ using System.Threading.Tasks;
 
 namespace ManageShops.Application.Models.DTOs
 {
-    public class AddManagerDTO
+    public class AddOtherEmployeeDTO
     {
         public Guid ID => Guid.NewGuid();
 
-        [Required(ErrorMessage = "Cannot be Empty")]
-        [MaxLength(25, ErrorMessage = "You Cannot Enter More Than 25 Characters")]
+        [Required(ErrorMessage = "Cannot be Empty !!")]
+        [MaxLength(25, ErrorMessage = "You Cannot Enter More Than 25 Characters..")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Cannot be Empty")]
-        [MaxLength(50, ErrorMessage = "You Cannot Enter More Than 50 Characters")]
+        [Required(ErrorMessage = "Cannot be Empty !!")]
+        [MaxLength(50, ErrorMessage = "You Cannot Enter More Than 50 Characters..")]
         public string Surname { get; set; }
-        public DateTime CreateDate => DateTime.Now;
+        public DateTime CreatedDate => DateTime.Now;
 
         [BirthDateExtension(ErrorMessage = "The Employees Must Be Over 18")]
         public DateTime BirthDate { get; set; }
         public Status Status => Status.Active;
-        public Roles Roles => Roles.Manager;
+        public Roles Roles => Roles.Personnel;
         public string EmailAddress { get; set; }
         public string Password { get; set; }
 
-        public string? ImagePath { get; set; }
-
         [ImageExtension]
         public IFormFile UploadPath { get; set; }
+        public string? ImagePath { get; set; }
     }
 }
