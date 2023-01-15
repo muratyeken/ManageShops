@@ -12,6 +12,10 @@ namespace ManageShops.Application.Services
     {
         Task CreateManager(AddManagerDTO addManagerDTO);
         Task<List<ManagersListVM>> GetManagers();
-        
+        Task<UpdateMenagerDTO> GetManager(Guid id);
+        Task UpdateManager(UpdateMenagerDTO updateManagerDTO);
+
+        Task DeleteManager(Guid id);
+
     }
 }

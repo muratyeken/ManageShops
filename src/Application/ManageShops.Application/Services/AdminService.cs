@@ -69,5 +69,44 @@ namespace ManageShops.Application.Services
 
             return managers;
         }
+        public async Task<UpdateMenagerDTO> GetManager(Guid id)
+        {
+            var manager = await _employeeRepo.GetFilteredFirstOrDefault(
+                select: x => new UpdateManagerVM
+                {
+                    ID = x.ID,
+                    Name = x.Name,
+                    Surname = x.Surname,
+                    ImagePath = x.ImagePath,
+                },
+                where: x => x.ID == id);
+            var updateManagerDTO = _mapper.Map<UpdateMenagerDTO>(manager);
+            return updateManagerDTO;
+        }
+
+        public async Task UpdateManager(UpdateMenagerDTO updateManagerDTO)
+        {
+            var model = await _employeeRepo.GetDefault(x => x.ID == updateManagerDTO.ID);
+            model.Name = updateManagerDTO.Name;
+            model.Surname = updateManagerDTO.Surname;
+            model.UpdateDate = updateManagerDTO.UpdatedDate;
+            model.Status = updateManagerDTO.Status;
+            using var image = Image.Load(updateManagerDTO.UploadPath.OpenReadStream());
+            image.Mutate(x => x.Resize(600, 560));
+            Guid guid = Guid.NewGuid();
+            image.Save($"wwwroot/images/{guid}.jpg");
+            model.ImagePath = ($"/images/{guid}.jpg");
+
+            await _employeeRepo.Update(model);
+        }
+
+        public async Task DeleteManager(Guid id)
+        {
+            var model = await _employeeRepo.GetDefault(x => x.ID == id);
+            model.DeleteDate = DateTime.Now;
+            model.Status = Status.Passive;
+
+            await _employeeRepo.Delete(model);
+        }
     }
 }
